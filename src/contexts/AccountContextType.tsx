@@ -4,6 +4,6 @@ import { Account } from "../models/Account";
 
 export interface AccountContextType {
     accounts: Account[];
-    addAccount(structure: string, name: string, kind: number): void;
-    removeAccount(account: Account): void;
+    updateAccount(id: number, structure: string, name: string, kind: number): void;
+    deleteAccount(account: Account): void;
 }

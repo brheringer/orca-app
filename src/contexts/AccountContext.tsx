@@ -5,33 +5,53 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { AccountContextType } from './AccountContextType';
 import { Account } from '../models/Account';
-import { getAccounts, saveAccounts } from '../services/AccountService';
+import * as service from '../services/AccountService';
 
 export const AccountContext = createContext<AccountContextType>({
     accounts: [],
-    addAccount: () => { },
-    removeAccount: () => { }
+    updateAccount: () => { },
+    deleteAccount: () => { }
 });
 
 const AccountProvider = (props: any) => {
-    const [accounts, setAccounts] = useState<Account[]>(getAccounts);
+    const [accounts, setAccounts] = useState<Account[]>([]);
+    const [error, setError] = useState<string>('');
 
     useEffect(() => {
-        saveAccounts(accounts);
+        //service.saveAccounts(accounts);
     }, [accounts]);
 
-    const addAccount = (structure: string, name: string, kind: number) => {
-        const account: Account = { id: accounts.length + 1, structure: structure, name: name, kind: kind };
-        setAccounts([...accounts, account]);
+    useEffect(() => {
+        service.getAccounts().then(result => {
+            if(result.errors)
+                setError(result.errors.message);
+            else
+                setAccounts(result.data.accounts);
+        })
+    }, []); // empty dependency array means this effect will only run once (like componentDidMount in classes)
+   
+    const updateAccount = (id: number, structure: string, name: string, kind: number) => {
+        const account: Account = { id: id, structure: structure, name: name, kind: kind };
+        service.updateAccount(account).then(data => {
+            //TODO if error
+            account.id = data.data.updateAccount.account.id;
+            if(id > 0)
+                setAccounts([...accounts]);
+            else
+                setAccounts([...accounts, account]);
+        });
     }
 
-    const removeAccount = (account: Account) => {
+    const deleteAccount = (account: Account) => {
         const index = accounts.indexOf(account);
+        if(account.id > 0)
+            service.deleteAccount(account);
         setAccounts(accounts.filter((_, i) => i !== index));
+            //TODO if error
     }
 
     return (
-        <AccountContext.Provider value={{ accounts, addAccount, removeAccount }}>
+        <AccountContext.Provider value={{ accounts, updateAccount, deleteAccount }}>
             {props.children}
         </AccountContext.Provider>
     );

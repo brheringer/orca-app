@@ -8,10 +8,10 @@ interface AccounstListItemProps {
 }
 
 const AccounstListItem = (props: AccounstListItemProps) => {
-    const { removeAccount } = useContext<AccountContextType>(AccountContext);
+    const { deleteAccount } = useContext<AccountContextType>(AccountContext);
 
-    const onRemove = (account: Account) => {
-        removeAccount(account);
+    const onDelete = (account: Account) => {
+        deleteAccount(account);
     }
 
     return (
@@ -23,7 +23,7 @@ const AccounstListItem = (props: AccounstListItemProps) => {
             <td className="uk-width-auto">
                 <button className="uk-icon-button uk-button-danger"
                     uk-icon="trash"
-                    onClick={() => onRemove(props.account)}></button>
+                    onClick={() => onDelete(props.account)}></button>
             </td>
         </tr>    
     );

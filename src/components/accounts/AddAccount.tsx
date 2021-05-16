@@ -12,14 +12,14 @@ const schema = yup.object().shape({
 });
 
 const AddAccount = () => {
-    const { addAccount } = useContext<AccountContextType>(AccountContext);
+    const { updateAccount } = useContext<AccountContextType>(AccountContext);
     const { register, handleSubmit, formState: {errors} } = useForm({resolver: yupResolver(schema)});
 
     const onSubmit = (data: any, e: any) => {
         console.log(data)
-        addAccount(data.structure, data.name, data.kind);
-        e.target.reset();
-        window.location.href = '/';
+        updateAccount(data.id, data.structure, data.name, data.kind);
+        //e.target.reset();
+        //window.location.href = '/';
     }
 
     return (

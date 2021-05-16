@@ -1,3 +1,6 @@
+#TODO deal with errors from the API (show message)
+#TODO remove AddCount and change AccountsList to add/update accounts
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
