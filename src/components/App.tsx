@@ -6,6 +6,8 @@ import AddAccount from './accounts/AddAccount';
 import Login from './Login';
 import Navbar from './Navbar';
 import Home from './Home';
+import MonthlyPanel from './monthly-panel/MonthlyPanel';
+import MonthlyPanelContext from '../contexts/MonthlyPanelContext';
 
 const App = () => {
     return (
@@ -17,14 +19,19 @@ const App = () => {
                             <Login></Login>
                         </Route>
                         <Route path="/create">
-                <AccountContext>
-                            <AddAccount></AddAccount>
-                </AccountContext>
+                            <AccountContext>
+                                <AddAccount></AddAccount>
+                            </AccountContext>
                         </Route>
                         <Route path="/accounts">
-                <AccountContext>
-                            <AccountsList></AccountsList>
-                </AccountContext>
+                            <AccountContext>
+                                <AccountsList></AccountsList>
+                            </AccountContext>
+                        </Route>
+                        <Route path="/monthly-panel">
+                            <MonthlyPanelContext>
+                                <MonthlyPanel></MonthlyPanel>
+                            </MonthlyPanelContext>
                         </Route>
                         <Route path="/">
                             <Home></Home>

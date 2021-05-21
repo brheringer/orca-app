@@ -14,6 +14,9 @@ const Navbar = () => {
                 <div className="uk-navbar-left">
                     <Link to="/accounts" className="uk-navbar-item uk-logo">Accounts</Link>
                 </div>
+                <div className="uk-navbar-left">
+                    <Link to="/monthly-panel" className="uk-navbar-item uk-logo">Monthly Panel</Link>
+                </div>
                 <div className="uk-navbar-right">
                     <ul className="uk-navbar-nav">
                         <li>

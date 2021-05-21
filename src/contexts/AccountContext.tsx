@@ -18,10 +18,6 @@ const AccountProvider = (props: any) => {
     const [error, setError] = useState<string>('');
 
     useEffect(() => {
-        //service.saveAccounts(accounts);
-    }, [accounts]);
-
-    useEffect(() => {
         service.getAccounts().then(result => {
             if(result.errors)
                 setError(result.errors.message);
@@ -34,11 +30,13 @@ const AccountProvider = (props: any) => {
         const account: Account = { id: id, structure: structure, name: name, kind: kind };
         service.updateAccount(account).then(data => {
             //TODO if error
-            account.id = data.data.updateAccount.account.id;
-            if(id > 0)
+            if(id > 0) {
                 setAccounts([...accounts]);
-            else
+            }
+            else {
+                account.id = data.data.updateAccount.account.id;
                 setAccounts([...accounts, account]);
+            }
         });
     }
 

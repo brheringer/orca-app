@@ -28,15 +28,15 @@ const AddAccount = () => {
             <div className="uk-margin uk-width-1-1">
                 {/* <input type="text" name="structure" id="structure" placeholder="structure" className="uk-input" ref={register}></input> */}
                 <input type="text" id="structure" placeholder="structure" className="uk-input" {...register('structure', { required: true })}></input>
-                <span><small><strong className="uk-text-danger">{errors.title?.message}</strong></small></span>
+                <span><small><strong className="uk-text-danger">{errors.structure?.message}</strong></small></span>
             </div>
             <div className="uk-margin uk-width-1-1">
                 <input type="text" id="name" placeholder="name" className="uk-input" {...register('name', { required: true })}></input>
-                <span><small><strong className="uk-text-danger">{errors.title?.message}</strong></small></span>
+                <span><small><strong className="uk-text-danger">{errors.name?.message}</strong></small></span>
             </div>
             <div className="uk-margin uk-width-1-1">
                 <input type="text" id="kind" placeholder="kind" className="uk-input" {...register('kind', { required: true })}></input>
-                <span><small><strong className="uk-text-danger">{errors.title?.message}</strong></small></span>
+                <span><small><strong className="uk-text-danger">{errors.kind?.message}</strong></small></span>
             </div>
             <div className="uk-width-1-1">
                 <button type="submit" className="uk-button uk-button-primary">Save</button>
